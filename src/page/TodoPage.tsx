@@ -12,11 +12,11 @@ const TodoPage = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [todoInput, setTodoInput] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTodoInput(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     if (!todoInput.replace(/\s/g, "").length) {
       return;
@@ -36,7 +36,7 @@ const TodoPage = () => {
     setTodos(remainingTodos);
   };
 
-  const handleTodoUpdate = (id: string) => {
+  const handleTodoUpdate = (id: string): void => {
     const copy = [...todos];
     const indexOfTodo = copy.findIndex((todo) => todo.id === id);
     copy[indexOfTodo].isDone = !copy[indexOfTodo].isDone;
