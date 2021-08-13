@@ -14,3 +14,6 @@ $> yarn start
 - React
 - TypeScript
 - @chakra-ui
+
+## Deployment
+https://hypecode-todolist.netlify.app/
