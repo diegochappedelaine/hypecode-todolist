@@ -1,4 +1,4 @@
-import { Flex, Button, Text } from "@chakra-ui/react";
+import { Flex, Button, Text, Tag } from "@chakra-ui/react";
 
 import { ITodo } from "global";
 
@@ -16,7 +16,6 @@ const Todo: React.FC<TodoProps> = ({
   return (
     <Flex
       as="li"
-      bg={todo.isDone ? "gray.50" : "gray.200"}
       w="100%"
       p={4}
       color="black"
@@ -25,25 +24,34 @@ const Todo: React.FC<TodoProps> = ({
       align="center"
       justify="space-between"
       boxShadow={"sm"}
+      cursor="pointer"
+      onClick={() => handleTodoUpdate(todo.id)}
+      bg={todo.isDone ? "gray.50" : "gray.200"}
     >
-      <Button
-        colorScheme={todo.isDone ? "green" : "gray"}
+      <Tag
         borderRadius={"50%"}
         w={"40px"}
-        onClick={() => handleTodoUpdate(todo.id)}
+        h={"40px"}
+        display="grid"
+        placeItems="center"
+        colorScheme={todo.isDone ? "green" : "gray"}
+        minWidth={"40px"}
       >
         {todo.isDone && "✓"}
-      </Button>
+      </Tag>
       <Text
         decoration={todo.isDone ? "line-through" : "inherit"}
         fontSize="md"
         color={todo.isDone ? "gray.500" : "black"}
+        isTruncated
+        mx={4}
       >
         {todo.label}
       </Text>
       <Button
         colorScheme="red"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           handleDelete(todo.id);
         }}
       >
