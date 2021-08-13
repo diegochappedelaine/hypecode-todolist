@@ -2,6 +2,8 @@ import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
 
 import Form from "components/Form";
+import Todo from "components/Todo";
+
 import { ITodo } from "global";
 
 import { Heading, UnorderedList } from "@chakra-ui/react";
@@ -51,6 +53,16 @@ const TodoPage = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
+      <UnorderedList styleType="none" ml={0}>
+        {todos.map((todo, index) => (
+          <Todo
+            handleDelete={handleDelete}
+            handleTodoUpdate={handleTodoUpdate}
+            todo={todo}
+            key={index}
+          />
+        ))}
+      </UnorderedList>
     </div>
   );
 };
